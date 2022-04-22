@@ -28,7 +28,15 @@ app.controller("myController", function($scope, Service){
             "sentences": $scope.sentences
         }
         Service.saveResponse(tosend).then(function(res){
-            console.log(res.data)
+            Swal.fire(
+                "Obrigado por participar!",
+                "Sua participação é de extrema importância! Se você deseja contribui mais, pode reenviar o formulário, avaliando novas frase. Clique em 'Ok'",
+                "success"
+            ).then(function(res){
+                Service.getSentences().then(function(res){
+                    $scope.sentences = res.data.data
+                })
+            })
         })
     }
 })
