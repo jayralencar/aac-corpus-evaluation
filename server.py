@@ -10,7 +10,7 @@ con = sqlite3.connect("./data/database.db",check_same_thread=False)
 con.row_factory = sqlite3.Row
 
 app = Flask(__name__,template_folder='template')
-# run_with_ngrok(app)
+run_with_ngrok(app)
 CORS(app)
 
 @app.route('/<path:path>', methods=['GET'])
