@@ -21,12 +21,25 @@ app.controller("myController", function($scope, Service){
         }
         return false
     }
+
+    $scope.send = function() {
+        var tosend = {
+            "user":$scope.user,
+            "sentences": $scope.sentences
+        }
+        Service.saveResponse(tosend).then(function(res){
+            console.log(res.data)
+        })
+    }
 })
 
 app.factory('Service', function($http) {
     return  {
         getSentences: function() {
             return $http.get("/get-sentences");
+        },
+        saveResponse: function(data) {
+            return $http.post("/save-response",data)
         }
     }
 })

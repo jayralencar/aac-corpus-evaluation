@@ -23,7 +23,7 @@ create_rates_script = """CREATE TABLE "rates" (
 	"sentence_id"	INTEGER,
 	"participant_id"	INTEGER,
 	"rate"	INTEGER,
-	"datetime"	DATE DEFAULT '(datetime(''now'',''localtime''))',
+	"datetime"	DATE DEFAULT (datetime('now','localtime')),
 	PRIMARY KEY("id" AUTOINCREMENT)
 );"""
 
@@ -32,7 +32,7 @@ create_complaints_script = """CREATE TABLE "complaints" (
 	"sentence_id"	INTEGER,
 	"participant_id"	INTEGER,
 	"complaint"	INTEGER,
-	"datetime"	DATE DEFAULT '(datetime(''now'',''localtime''))',
+	"datetime"	DATE DEFAULT (datetime('now','localtime')),
 	PRIMARY KEY("id" AUTOINCREMENT)
 );"""
 
