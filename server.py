@@ -2,13 +2,14 @@ from flask import Flask
 from flask import request,render_template,send_from_directory
 from flask_cors import CORS
 from flask_ngrok import run_with_ngrok
+from flask import send_file, make_response, abort  
 import sqlite3
 
 con = sqlite3.connect("./data/database.db",check_same_thread=False)
 con.row_factory = sqlite3.Row
 
 app = Flask(__name__,template_folder='template')
-# run_with_ngrok(app)
+run_with_ngrok(app)
 CORS(app)
 
 @app.route('/<path:path>', methods=['GET'])
@@ -17,7 +18,9 @@ def static_proxy(path):
 
 @app.route('/')
 def hello():
-    return render_template("index.html")
+    # return render_template("index.html")
+    return make_response(open('./template/index.html').read())
+
 
 @app.route("/get-sentences", methods=["GET"])
 def get_sentences():
